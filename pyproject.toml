@@ -1,0 +1,11 @@
+[project]
+name = "procon2-hid-tool"
+version = "0.1.0"
+description = "Tool for enabling Procon2 HID Input"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pyusb",
+    "pyinstaller",
+    "pywinusb>=0.4.2",
+]
