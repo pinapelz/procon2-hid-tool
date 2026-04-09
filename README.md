@@ -43,6 +43,10 @@ Tested on Manjaro Linux (Arch Linux-based)
 
 # Troubleshooting
 
-## I'm seeing the error "Searching for Nintendo Switch Controllers...Device not found"
+## Error: `Searching for Nintendo Switch Controllers... Device not found`
 
-Make sure your controller is plugged into your computer and your OS recognizes your controller being plugged in.  You can verify if your OS detects your controller by looking in the `/dev/input` directory.  There you should see `js#` (where `#` is all input devices connected to your computer).  When you plug your controller in, you should see a new "character device" file type.  If you do not see this new file being added, either the resource is busy or your OS cannot detect the device.  If the resource is busy, you will need to exit any program that may be interferring with the controller (in my testing, if Dolphin is already open, then my controller cannot connect - instead, I would need to close Dolphin first, plug in my controller then reopen Dolphin).  If your OS cannot detect your device, you will need to consult your Linux distribution's documentation for connecting game controllers.  
+Make sure your controller is plugged into your computer and your OS recognizes your controller being plugged in.  You can verify if your OS detects your controller by looking in the `/dev/input` directory.  There you should see `js#` (where `#` is all input devices connected to your computer).  When you plug your controller in, you should see a new "character device" file.  If you do not see this new file being added,  your OS cannot detect the device.  You will need to consult your Linux distribution's documentation for connecting game controllers.  
+
+## Error: `Searching for Nintendo Switch Controllers... Found GCN Controller (ID: 2073) Error setting configuration: [Errno 16] Resource busy Could not claim interface: [Errno 16] Resource busy`
+
+This indicates that another application is using the interface.  You will need to exit any program that may be interferring with the controller (in my testing, if Dolphin was already open, then my controller would NOT be able connect - instead, I would need to CLOSE Dolphin first, plug in my controller, then reopen Dolphin).  Note that the `js#` (where `#` is all input devices connected to your computer) "character device" file will also be missing.  
