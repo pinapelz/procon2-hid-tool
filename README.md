@@ -29,7 +29,7 @@ A small tool to enable HID Input on Nintendo Pro Controller 2. This will allow f
 	Controller initialization sequence complete! All LEDs should be on.
 	```
 
-5. Run your program that requires a controller (such as Dolphin) and see if the controller connected successfully.
+4. Run your program that requires a controller (such as Dolphin) and you should see your controller configurable in the application.
 
 ---
 
