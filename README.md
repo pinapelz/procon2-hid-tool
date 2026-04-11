@@ -1,8 +1,52 @@
 # procon2-hid-tool
-A small tool to enable HID Input on Nintendo Pro Controller 2. This will allow for you to use the controller with Steam (or other applications) until better drivers/support is added. (Note this is only tested on Linux)
+A small tool to enable HID Input on Nintendo Pro Controller 2. This will allow for you to use the controller with Steam (or other applications) until better drivers/support is added. 
 
-Install the dependencies and then plug your controller in via USB. Then just run the script and hopefully it should find your controller and send the necessary sequence of commands.
+---
 
-If all went well then you should see all 4 player number indicator lights light up (this is those square looking LEDs by the charging port)
+# Note
+**Tested only on Linux.**
+
+---
+
+# Installation
+
+1. Download the files:
+* procon2-hid.py
+* pyproject.toml
+* uv.lock
+
+2. Plug in your Nintendo Pro Controller 2.
+
+3. In the folder with the files, run the following commands:
+   
+	```bash
+	$ python3 procon2-hid.py
+	```
+
+	If all went well then you should see all 4 player number indicator lights light up (this is those square looking LEDs by the charging port) and the success message:
+
+	```
+	Controller initialization sequence complete! All LEDs should be on.
+	```
+
+4. Run your program that requires a controller (such as Dolphin) and you should see your controller configurable in the application.
+
+---
+
+# Additional Notes
 
 This is essentially just a Python version of [Procon2Tool](https://handheldlegend.github.io/procon2tool/) since WebHID is dodgy on the Firefox based browser I use.
+
+Tested on Manjaro Linux (Arch Linux-based)
+
+---
+
+# Troubleshooting
+
+## Error: `Searching for Nintendo Switch Controllers... Device not found`
+
+Make sure your controller is plugged into your computer and your OS recognizes your controller being plugged in.  You can verify if your OS detects your controller by looking in the `/dev/input` directory.  There you should see `js#` (where `#` is all input devices connected to your computer).  When you plug your controller in, you should see a new "character device" file.  If you do not see this new file being added,  your OS cannot detect the device.  You will need to consult your Linux distribution's documentation for connecting game controllers.  
+
+## Error: `Searching for Nintendo Switch Controllers... Found GCN Controller (ID: 2073) Error setting configuration: [Errno 16] Resource busy Could not claim interface: [Errno 16] Resource busy`
+
+This indicates that another application is using the interface.  You will need to exit any program that may be interferring with the controller (in my testing, if Dolphin was already open, then my controller would NOT be able connect - instead, I would need to CLOSE Dolphin first, plug in my controller, then reopen Dolphin).  Note that the `js#` (where `#` is all input devices connected to your computer) "character device" file will also be missing.  
